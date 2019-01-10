@@ -1,0 +1,20 @@
+version: '2'
+services:
+  test-server:
+    image: docker.io/zhoujing/wm-testhelper-server
+    container_name: server 
+    # network_mode: "host" 
+    volumes:
+      - ./server-run-path:/serverlog
+    ports:
+      - '9100:9100'
+    command: /mtserver
+  test-mesh:
+    image: docker.io/zhoujing/wm-testhelper-mesh
+    container_name: mesh
+    # network_mode: "host" 
+    volumes:
+      - ./mesh-run-path:/mesh-logs
+    ports:
+      - '9981:9981'
+    command: /weibo-mesh -c /mesh.yaml
