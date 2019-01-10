@@ -46,7 +46,7 @@ motan-service:
     export: "motan2:9100"
     provider: http
     HTTP_REQUEST_METHOD: GET
-    URL_FORMAT: http://i.api.toutiao.weibo.cn/pub/comm_timeline?access_token=2.00rLP4ACQ4QiNC0155b57b23afnZuD&cate_id=0&imei=1
+    URL_FORMAT: http://idevz.org/comm_timeline?access_token=2.&cate_id=0&imei=1
     basicRefer: test-mesh-basicService
   s-test:
     path: com.weibo.STestService
@@ -67,4 +67,4 @@ http-service:
       URL_FORMAT: http://xxx.xxx.0.1:8000
   api-test:
     Hello:
-      URL_FORMAT: http://i.api.toutiao.weibo.cn/pub/comm_timeline?access_token=2.00rLP4ACQ4QiNC0155b57b23afnZuD&cate_id=0&imei=1
+      URL_FORMAT: http://idevz.org/comm_timeline?access_token=2.&cate_id=0&imei=1

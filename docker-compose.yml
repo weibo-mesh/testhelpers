@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   test-server:
     image: docker.io/zhoujing/wm-testhelper-server
