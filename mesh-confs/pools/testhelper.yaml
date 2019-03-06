@@ -1,0 +1,9 @@
+motan-basicRefer:
+  # card-abtest-basicRefer:
+  #   requestTimeout: 8000
+  #   loadbalance: roundrobin
+
+dynamic-param:
+  refer.localhost.group: "motan-demo-rpc"
+  refer.localhost.preload: "com.weibo.HelloWorldService"
+  service.testhelper.grop: "motan-demo-rpc"

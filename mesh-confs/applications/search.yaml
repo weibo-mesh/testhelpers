@@ -1,0 +1,8 @@
+#config fo agent
+motan-agent:
+  application: "search"
+
+import-refer:
+  - localhost
+  - com.weibo.HelloMTService
+  - cache-service

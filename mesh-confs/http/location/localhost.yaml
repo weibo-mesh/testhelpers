@@ -1,0 +1,8 @@
+http-locations: #各域名所对应的 location 服务导出（目前假设每个 location 对应一组 upstream）
+  localhost:
+    - match: '/'
+      type: start
+      upstream: com.weibo.HelloWorldService
+    # - match: '/ddd?dd'
+    #   type: regexp
+    #   upstream: idevz-mesh-test

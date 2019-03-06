@@ -1,0 +1,17 @@
+import-http-location: # 导入所需域名 location 配置
+  - localhost
+
+dynamic-param:
+  refer.localhost.group: "default-group-could overlaied by pools settings"
+  refer.localhost.preload: "com.weibo.HelloWorldService"
+
+http-client:
+  localhost:
+    registry: zk
+    domain: localhost
+    group: "${refer.localhost.group}"
+    preload: "${refer.localhost.preload}"
+    serialization: simple
+    path: com.weibo.HelloWorldService
+    filter: "accessLog,metrics"
+    protocol: motan2

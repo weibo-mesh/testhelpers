@@ -16,6 +16,7 @@ tmtags
 
 # OSX
 .DS_Store
+.idea
 ._*
 .Spotlight-V100
 .Trashes
@@ -26,6 +27,12 @@ tests/coverage/
 # weibo-meshx
 mesh-run-path/*
 server-run-path/*x
+weibo-mesh
+mesh-logs/*
+mtserver
+agent.pid
+agent_runtime/*
+snapshot/*
 
 # debugger
 .gdb*

@@ -1,0 +1,15 @@
+import-http-location: # 导入所需域名 location 配置
+  - localhost
+
+motan-refer:
+  cache_service:
+    path: cn.sina.api.commons.cache.MemcacheClient
+    registry: cache_service-direct
+    protocol: memcache
+    group: motan-demo-rpc # group name
+    protocol: memcache # rpc protocol
+    requestTimeout: 10000
+    haStrategy: failover
+    loadbalance: roundrobin
+    filter: "accessLog" # filter registed in extFactory
+    retries: 0

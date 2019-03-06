@@ -1,0 +1,21 @@
+# all configs in this file will enable by default. so these configids can be used in all service yamls.  
+# do not modify!
+
+#config fo agent
+motan-agent:
+  mport: 8082  
+  log_dir: "stdout"
+  snapshot_dir: "./snapshot"
+  registry: "zk" # registry id
+  application: "mesh-test-helper"
+
+#config of registries
+motan-registry:
+  zk:
+    protocol: zookeeper
+    host: 127.0.0.1
+    port: 2181
+  cache_service-direct:
+    protocol: direct
+    host: 127.0.0.1
+    port: 11211
