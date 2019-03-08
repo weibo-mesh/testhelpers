@@ -9,7 +9,7 @@ http-client:
   localhost:
     registry: zk
     domain: localhost
-    group: "${refer.localhost.group}"
+    group: "motan-demo-rpc-http-mesh"
     preload: "${refer.localhost.preload}"
     serialization: simple
     path: com.weibo.HelloWorldService

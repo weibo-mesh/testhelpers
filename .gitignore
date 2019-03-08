@@ -4,11 +4,6 @@ examples/z*
 examples/pb_path/PB_CLASS_PATH/*
 vendor
 
-# vim
-.*.sw[a-z]
-*.un~
-Session.vim
-
 # textmate
 *.tmproj
 *.tmproject
@@ -30,9 +25,14 @@ server-run-path/*x
 weibo-mesh
 mesh-logs/*
 mtserver
+tmesh
 agent.pid
 agent_runtime/*
 snapshot/*
+logs/*
+cmd/tmesh/debug/*
+cmd/tmesh/snapshot/*
+cmd/tmesh/agent_runtime/*
 
 # debugger
 .gdb*

@@ -5,6 +5,7 @@ motan-agent:
 import-refer:
   - localhost
   - com.weibo.HelloMTService
+  - com.weibo.HelloWorldService
   - cache-service
 
 motan-basicService:
@@ -28,3 +29,19 @@ motan-service:
     requestTimeout: 2000
     filter: "accessLog,metrics"
     basicService: test-mesh-basicService
+  HelloWorldService-test:
+    registry: zk
+    group: "${service.testhelper.grop}"
+    path: com.weibo.HelloWorldService
+    export: "motan2:9200"
+    provider: http
+    serialization: simple
+    requestTimeout: 2000
+    HTTP_REQUEST_METHOD: GET
+    filter: "accessLog,metrics"
+
+http-service:
+  HelloWorldService-test:
+    anyFuncName,Hello:
+      # URL_FORMAT: http://xxx.xxx.55.7/server.php
+      URL_FORMAT: http://127.0.0.1:8080
