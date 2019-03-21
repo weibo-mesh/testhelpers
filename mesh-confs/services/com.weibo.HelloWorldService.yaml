@@ -1,12 +1,31 @@
 import-http-location: # 导入所需域名 location 配置
   - localhost
 
+#config of registries
+motan-registry:
+  cedrus-direct:
+    protocol: direct
+    host: 127.0.0.1
+    port: 9200
+
 motan-refer:
   hello-mesh-http-zk:
     path: com.weibo.HelloWorldService
     registry: "zk" # registry id
     group: motan-demo-rpc # group name
     protocol: motan2 # rpc protocol
+    requestTimeout: 10000
+    haStrategy: failover
+    loadbalance: roundrobin
+    serialization: simple
+    filter: "accessLog" # filter registed in extFactory
+    retries: 0
+    connectRetryInterval: 5 # mostly you needn't set this option, it's just for testing(like a client mesh referring a server mesh)
+  hello-mesh-http-cedrus:
+    path: com.weibo.HelloWorldService
+    registry: "cedrus-direct" # registry id
+    group: motan-demo-rpc # group name
+    protocol: cedrus # rpc protocol
     requestTimeout: 10000
     haStrategy: failover
     loadbalance: roundrobin

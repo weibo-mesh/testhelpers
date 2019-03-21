@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"time"
 
 	"github.com/weibocom/motan-go"
 	mc "github.com/weibocom/motan-go/core"
@@ -82,4 +83,10 @@ func (mt *MTService) HelloZ(strArg string, inT64 int64, inT32 int64, nameArr []s
 func (mt *MTService) HelloZ32(strArg string, inT64 int64, inT32 int64, nameArr []string) int32 {
 	return 2222222
 	// return 9223372036854775808
+}
+
+// TimeOutErr test
+func (mt *MTService) TimeOutErr(strMap map[string]string) (res string) {
+	time.Sleep(5 * time.Second)
+	return "Time Out Test."
 }
