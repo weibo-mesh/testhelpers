@@ -1,4 +1,4 @@
-FROM alpine
+FROM zhoujing/idevz-runx-golang:tagname:1.12
 
 MAINTAINER idevz, zhoujing00k@gmail.com
 LABEL RUN='docker run -it --privileged --name NAME IMAGE'

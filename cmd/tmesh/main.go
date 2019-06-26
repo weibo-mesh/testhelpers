@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"time"
 
+	"git.intra.weibo.com/openapi_rd/weibo-motan-go/tools"
+
 	wm "git.intra.weibo.com/openapi_rd/weibo-motan-go"
 	"github.com/weibocom/motan-go"
 	m "github.com/weibocom/motan-go"
@@ -24,6 +26,7 @@ func main() {
 	extFactory := wm.GetWeiboExtentionFactory()
 	agent := m.NewAgent(extFactory)
 	agent.RegisterManageHandler("/stop_motan_agent", StopMotanAgent(agent))
+	tools.StartBackendDetector(agent)
 	agent.StartMotanAgent()
 	time.Sleep(time.Hour * 999999)
 }

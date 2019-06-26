@@ -11,10 +11,14 @@
 ### END ###
 
 set -ex
-BASE_DIR=${BASE_DIR:-"$(readlink -f "$(dirname "$0")")"}
+if [ $(uname) = "Darwin" ]; then
+	BASE_DIR=$(dirname $(cd $(dirname "$0") && pwd -P)/$(basename "$0"))
+else
+	BASE_DIR=${BASE_DIR:-"$(readlink -f "$(dirname "$0")")"}
+fi
 
 # the default version same to motan-go version
-VERSION=${V:-"1.0.0"}
+VERSION=${V:-"1.0.1"}
 ORI_HELP_IMG=${OHIMG:-"zhoujing/wm-testhelper"}
 
 # the Golang runner image should using the version as Golang it Self
@@ -27,13 +31,13 @@ MTCONTAINER_NAME=${MTC_NAME:-"wm-testhelper"}
 
 build_exec() {
 	local cmd=${1}
-	sudo docker run -e CGO_ENABLED=0 \
+	sudo docker run \
 		-e GOOS=linux -e GOARCH=amd64 \
 		-v $GIT/go:/go \
 		-v $MCODE/z/idevz-go:/z/idevz-go \
 		-v $GIT/weibo-mesh/testhelpers:/runX/testhelpers \
 		-w /runX/testhelpers/cmd/${cmd} \
-		"${GOLANG_IMG}" go build -a -installsuffix cgo -o "/runX/testhelpers/${cmd}"
+		"${GOLANG_IMG}" go build -a -o "/runX/testhelpers/${cmd}"
 }
 
 images_bp() {
@@ -46,8 +50,11 @@ images_bp() {
 
 	sudo docker build -t "${ORI_HELP_IMG}" .
 	sudo docker tag "${ORI_HELP_IMG}" "${TEST_HELP_IMG}"
-	sudo docker push "${ORI_HELP_IMG}"
-	sudo docker push "${TEST_HELP_IMG}"
+
+	if [ "${1}" = "yes" ]; then
+		sudo docker push "${ORI_HELP_IMG}"
+		sudo docker push "${TEST_HELP_IMG}"
+	fi
 }
 
 show_help() {
@@ -63,8 +70,11 @@ show_help() {
 }
 
 case "${1}" in
-bp)
+b)
 	images_bp
+	;;
+bp)
+	images_bp "yes"
 	;;
 mc)
 	sudo docker run --network host -d --rm --name mc -v memcached

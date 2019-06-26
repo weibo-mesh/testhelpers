@@ -3,10 +3,14 @@
 
 #config fo agent
 motan-agent:
-  mport: 8082  
-  log_dir: "stdout"
+#  unixSock: /tmp/mesh.sock
+#  managementUnixSock: /tmp/m-mesh.sock
+#  httpProxyUnixSock: /tmp/h-mesh.sock
+  port: 9981
+  mport: 8082
+  log_dir: "./mesh-logs"
   snapshot_dir: "./snapshot"
-  registry: "zk" # registry id
+#  registry: "zk" # registry id
   application: "mesh-test-helper"
 
 #config of registries

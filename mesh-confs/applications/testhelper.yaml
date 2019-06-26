@@ -8,6 +8,44 @@ import-refer:
   - com.weibo.HelloWorldService
   - cache-service
 
+dynamic-param:
+  test-motan-service: "com.weibo.HelloMTService"
+
+dynamic-group:
+  - refer.authrpc.group:
+      yf: yf-auth-rpc
+      tc: tc-auth-rpc
+      aliyun: tc-auth-rpc
+
+  - refer.i_api_weibo_com.group:
+      yf: yf-auth-rpc
+      tc: tc-auth-rpc
+      aliyun: tc-auth-rpc
+
+#conf of basic refers
+motan-basicRefer:
+  api-platform-basicRefer:
+    group: yf-api-core
+    registry: zk
+    serialization: simple
+    protocol: motan2
+    version: 0.1
+    requestTimeout: 1000
+    haStrategy: backupRequest
+    loadbalance: random
+    filter: "accessLog,metrics,clusterMetrics"
+    maxClientConnection: 10
+    minClientConnection: 1
+    retries: 1
+    application: search
+
+#conf of refers
+#motan-refer:
+#  api-core-object:
+#    group: yf-i.api.weibo.com
+#    path: bazactivityali
+#    basicRefer: api-platform-basicRefer
+
 motan-basicService:
   test-mesh-basicService: # basic refer id
     group: motan-demo-rpc # group name
@@ -21,7 +59,7 @@ motan-service:
   motan-rpc:
     registry: zk
     group: "${service.testhelper.grop}"
-    path: com.weibo.HelloMTService
+    path: "${test-motan-service}"
     export: "motan2:9200"
     serialization: simple
     proxy: motan2:9100
@@ -39,6 +77,7 @@ motan-service:
     requestTimeout: 2000
     HTTP_REQUEST_METHOD: GET
     filter: "accessLog,metrics"
+    URL_FORMAT: http://127.0.0.1:8080
 
 http-service:
   HelloWorldService-test:

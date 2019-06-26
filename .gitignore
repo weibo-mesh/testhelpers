@@ -24,6 +24,8 @@ mesh-run-path/*
 server-run-path/*x
 weibo-mesh
 mesh-logs/*
+mtserver-logs/*
+mtclient-logs/*
 tmesh
 agent.pid
 agent_runtime/*

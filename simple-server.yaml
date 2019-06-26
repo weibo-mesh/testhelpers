@@ -1,5 +1,5 @@
 motan-server:
-  log_dir: "stdout"
+  log_dir: "./mtserver-logs"
   application: "server-test" # server identify. 
 
 #config of registries
@@ -27,7 +27,7 @@ motan-basicService:
 motan-service:
   mt-test:
     path: com.weibo.HelloMTService # e.g. service name for subscribe
-    ref : "main.MTService"
+    ref: "main.MTService"
     export: "motan2:9100"
     registry: "direct" # registry id
     basicService: test-mesh-basicService
